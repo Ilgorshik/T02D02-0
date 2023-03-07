@@ -1,6 +1,6 @@
 #!/bin/bash
 if [ $# -eq 0 ]; then
-  echo "No arguments"
+  echo "Нет аргумента"
   exit
 fi
 
@@ -14,7 +14,7 @@ if [ -z "$3" ]; then
 fi
 if test -f "$1";then
 sed -i -e "s/$2/$3/" $1
-echo "src/$1 - $(stat $1 | awk '{print $8}') - $(date +%F) $(date +%H:%M) - $(shasum -a256 $1  | awk '{print $1}') - sha256" >> temp.log
+echo "src/$1 - $(stat $1 | awk '{print $8}') - $(date +"%F %H:%M") - $(shasum -a256 $1  | awk '{print $1}') - sha256" >> files.log
 else
   echo "$1 не существует"
 fi
