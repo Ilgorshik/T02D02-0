@@ -4,5 +4,8 @@ if [ -z "$1" ]; then
   exit
 fi 
 if test -f "$1" ;then
-echo " $( wc -l < files.log ) $(cat files.log | awk '{print $1}' | uniq -c | wc -l |  awk '{print $1}') $(grep $1 files.log | awk '{print $8}' | uniq -c | wc -l |  awk '{print $1 -1}'  ) "
+all_size="$(wc -l < $1 |awk '{print $1}'  )"
+uniq_files="$(cat $1 | awk '{print $1}' | uniq -c |  wc -l | awk '{print $1}')"
+cnt_hash="$(cat $1 | awk '{print $8}' | uniq -c | wc -l | awk '{print $1}')"
+echo "$all_size $uniq_files $cnt_hash"
 fi
